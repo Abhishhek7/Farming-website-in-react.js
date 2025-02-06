@@ -4,6 +4,7 @@ import { FaEnvelope, FaMapMarkedAlt, FaPhone } from 'react-icons/fa';
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -37,9 +38,11 @@ const Contact = () => {
   const validateForm = () => {
     const validationErrors = {};
 
+    const nameRegex = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
+
     
-    if (!formData.name.trim()) {
-      validationErrors.name = 'Name is required.';
+    if (!nameRegex.test(formData.name)) {
+      validationErrors.name = 'Only letters and spaces allowed in name';
     }
 
     
@@ -136,7 +139,7 @@ const Contact = () => {
                   <label className='block text-gray-700 mb-2' >Email</label>
                   <input 
                     type="email" 
-                    className={`w-full p-2 border border-gry-300 rounded ${errors.email ? 'border-red-500' : ''}`} 
+                    className={`w-full p-2 border border-gray-300 rounded ${errors.email ? 'border-red-500' : ''}`} 
                     placeholder='Enter Email' 
                     name="email" 
                     value={formData.email} 
